@@ -12,13 +12,16 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('payments', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
+          $table->engine = 'MyISAM';
             
           $table->increments('id');
-          $table->integer('customer_id', 11)->nullable();
+          $table->integer('customer_id')->length(11)->nullable();
+          $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
           $table->string('check_number', 50)->nullable();
           $table->date('payment_date')->nullable();
           $table->decimal('amout', 10, 2);
+          $table->timestamps();
           
         });
     }

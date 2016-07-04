@@ -12,8 +12,18 @@ class CreateOfficesTable extends Migration
      */
     public function up()
     {
-        Schema::table('offices', function (Blueprint $table) {
+        Schema::create('offices', function (Blueprint $table) {
             //
+          $table->increments('id');
+          $table->string('city',50)->nullable();
+          $table->string('phone',50)->nullable();
+          $table->string('address_line1',50)->nullable();
+          $table->string('address_line2',50)->nullable();
+          $table->string('state',50)->nullable();
+          $table->string('country',50)->nullable();
+          $table->string('postal_code',15)->nullable();
+          $table->string('territory',10)->nullable();
+          $table->timestamps();
         });
     }
 
@@ -24,8 +34,6 @@ class CreateOfficesTable extends Migration
      */
     public function down()
     {
-        Schema::table('offices', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('offices');
     }
 }

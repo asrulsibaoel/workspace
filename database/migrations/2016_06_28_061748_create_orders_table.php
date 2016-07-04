@@ -12,7 +12,7 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             //
           $table->engine = 'MyISAM';
           
@@ -22,7 +22,9 @@ class CreateOrdersTable extends Migration
           $table->date('shipped_date')->nullable();
           $table->string('status', 15);
           $table->text('comments')->nullable();
-          $table->integer('customer_id', 11)->nullable();
+          $table->integer('customer_id')->length(11)->nullable();
+          $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
+          $table->timestamps();
           
         });
     }

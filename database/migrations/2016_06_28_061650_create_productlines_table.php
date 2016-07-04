@@ -12,7 +12,7 @@ class CreateProductlinesTable extends Migration
      */
     public function up()
     {
-        Schema::table('productlines', function (Blueprint $table) {
+        Schema::create('productlines', function (Blueprint $table) {
             //
           $table->engine = 'MyISAM';
           $table->increments('id');
@@ -20,7 +20,7 @@ class CreateProductlinesTable extends Migration
           $table->text('description');
           $table->text('html_description');
           $table->text('image');
-          
+          $table->timestamps();
         });
     }
 

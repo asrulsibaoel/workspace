@@ -12,15 +12,18 @@ class CreateOrderdetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('orderdetails', function (Blueprint $table) {
+        Schema::create('orderdetails', function (Blueprint $table) {
             //
           $table->engine = 'MyISAM';
           $table->increments('id');
-          $table->integer('order_id', 11);
-          $table->integer('product_id', 15);
-          $table->integer('quantity_ordered', 11);
+          $table->integer('order_id')->length(11);
+          $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+          $table->integer('product_id')->length(15);
+          $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+          $table->integer('quantity_ordered')->length(11);
           $table->decimal('price_each', 10, 2);
-          $table->smallInteger('order_line_number', 6);
+          $table->smallInteger('order_line_number')->length(6);
+          $table->timestamps();
         });
     }
 
