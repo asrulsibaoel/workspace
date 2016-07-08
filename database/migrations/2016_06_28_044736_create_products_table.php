@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
           $table->foreign('product_line_id')->references('id')->on('productlines')->onDelete('cascade');
           $table->string('product_scale', 10);
           $table->string('product_vendor', 50);
+          $table->text('image');
           $table->text('product_description');
           $table->smallInteger('quantity_in_stock')->length(6);
           $table->decimal('price', 5, 2);
